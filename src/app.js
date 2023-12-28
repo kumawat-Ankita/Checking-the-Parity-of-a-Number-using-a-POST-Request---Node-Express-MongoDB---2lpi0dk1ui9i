@@ -11,8 +11,18 @@ const server = http.createServer((req, res) => {
       const obj = JSON.parse(chunks)
       const value = obj.num1;
     
-     // Write the code here to check if the number is odd or even
-
+    if(isNan(value)){
+      res.writeHead(404,{'Content-Type': 'text/plain'});
+      res.end('Not a number');
+    }else{
+      if(value %2 === 0){
+        res.writeHead(200,{'Content-Type': 'text/plain'});
+        res.end('Even');
+      }else{
+        res.writeHead(200,{'Content-Type': 'text/plain'});
+        res.end('Odd');
+      }
+    }
    });
   }
 
